@@ -40,15 +40,21 @@ contract elBanco {
             isDeposited[msg.sender] == false,
             "cannot deposit more than once"
         );
+
+        // solhint-disable-next-line reason-string
         require(
             msg.value >= 1e16,
             "insufficient amount, min. deposit: 0.01 ETH"
         );
 
         etherBalanceOf[msg.sender] = etherBalanceOf[msg.sender] + msg.value;
+
+        // solhint-disable-next-line not-rely-on-time
         depositStart[msg.sender] = depositStart[msg.sender] + block.timestamp;
 
         isDeposited[msg.sender] = true; //activate deposit status
+
+        // solhint-disable-next-line not-rely-on-time
         emit Deposit(msg.sender, msg.value, block.timestamp);
     }
 
@@ -60,6 +66,7 @@ contract elBanco {
         uint256 userBalance = etherBalanceOf[msg.sender]; //for event
 
         //check user's hodl time
+        // solhint-disable-next-line not-rely-on-time
         uint256 depositTime = block.timestamp - depositStart[msg.sender];
 
         // 31668017 - interest(10% APY) per second for min. deposit amount (0.01 ETH)
