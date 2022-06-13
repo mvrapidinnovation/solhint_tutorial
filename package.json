@@ -1,0 +1,12 @@
+{
+  "name": "solhint_tutorial",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "solhint": "^3.3.7"
+  },
+  "scripts": {
+    "solh": "solhint contracts/**/*.sol"
+  }
+}
